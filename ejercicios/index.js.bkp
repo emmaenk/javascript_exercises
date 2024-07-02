@@ -1,0 +1,25 @@
+const axios = require("axios"); // se declara la constante de axios
+
+const main = async () => { // se declara la función constante del main
+  //axios es asincrono
+  //nos va a devolver una promesa
+  /**
+   * todas las apis se consumen igual, solo hay que cambiar la url del api
+   * también se necesita especificar en el return los campos que se quieren traer de la api
+   * estos a su vez se imprimir en un console log para su validación y corroborar que son esos
+   */
+  let response = await axios.get("https://api.datos.gob.mx/v1/gobmx.facts");
+  let {
+    data: { results },
+  } = response;
+let datos = results.map((hecho)=>{
+    return{
+        //opera: hecho.operations,
+        //org: hecho.organization,
+        cmp: hecho.fact
+    }
+})
+  console.log(datos);//se imprimen los resultados de los datos 
+};
+
+main();//se ejecuta la función main
